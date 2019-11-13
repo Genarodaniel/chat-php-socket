@@ -38,7 +38,7 @@ class SocketIO
         }
         if($port)
         {
-            $worker = new Worker('SocketIO://0.0.0.0:'.$port, $opts);
+            $worker = new Worker('SocketIO://172.31.0.219:'.$port, $opts);
             $worker->name = 'PHPSocketIO';
 
             if(isset($opts['ssl'])) {
