@@ -454,7 +454,7 @@ class Worker
     protected static $_availableEventLoops = array(
         'libevent' => '\Workerman\Events\Libevent',
         'event'    => '\Workerman\Events\Event'
-        // Temporarily removed swoole because it is not stable enough  
+        // Temporarily removed swoole because it is not stable enough
         //'swoole'   => '\Workerman\Events\Swoole'
     );
 
@@ -667,7 +667,7 @@ class Worker
     {
         return static::$globalEvent;
     }
-    
+
     /**
      * Get main socket resource
      * @return resource
@@ -734,7 +734,7 @@ class Worker
         $title = '';
         foreach(static::getUiColumns() as $column_name => $prop){
             $key = '_max' . \ucfirst(\strtolower($column_name)) . 'NameLength';
-            //just keep compatible with listen name 
+            //just keep compatible with listen name
             $column_name == 'socket' && $column_name = 'listen';
             $title.= "<w>{$column_name}</w>"  .  \str_pad('', static::$$key + static::UI_SAFE_LENGTH - \strlen($column_name));
         }
@@ -1157,7 +1157,7 @@ class Worker
             return;
         }
         \umask(0);
-        $pid = \pcntl_fork();
+        $pid = pcntl_fork();
         if (-1 === $pid) {
             throw new Exception('fork fail');
         } elseif ($pid > 0) {
@@ -1167,7 +1167,7 @@ class Worker
             throw new Exception("setsid fail");
         }
         // Fork again avoid SVR4 system regain the control of terminal.
-        $pid = \pcntl_fork();
+        $pid = pcntl_fork();
         if (-1 === $pid) {
             throw new Exception("fork fail");
         } elseif (0 !== $pid) {
@@ -1236,7 +1236,7 @@ class Worker
         if (!\class_exists('\Swoole\Event', false)) {
             unset(static::$_availableEventLoops['swoole']);
         }
-        
+
         $loop_name = '';
         foreach (static::$_availableEventLoops as $name=>$class) {
             if (\extension_loaded($name)) {
@@ -2360,7 +2360,7 @@ class Worker
         }
 
         \restore_error_handler();
-        
+
         // Try to emit onWorkerStart callback.
         if ($this->onWorkerStart) {
             try {
