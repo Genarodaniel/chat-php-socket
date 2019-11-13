@@ -1596,7 +1596,7 @@ function Socket(uri, opts){
 
   this.agent = opts.agent || false;
   this.hostname = opts.hostname ||
-    (global.location ? location.hostname : 'localhost');
+    (global.location ? location.hostname : 'apitcc-env.ig6d9uf3gk.sa-east-1.elasticbeanstalk.com');
   this.port = opts.port || (global.location && location.port ?
        location.port :
        (this.secure ? 443 : 80));
@@ -2592,7 +2592,7 @@ JSONPPolling.prototype.doPoll = function () {
   this.script = script;
 
   var isUAgecko = 'undefined' != typeof navigator && /gecko/i.test(navigator.userAgent);
-  
+
   if (isUAgecko) {
     setTimeout(function () {
       var iframe = document.createElement('iframe');
